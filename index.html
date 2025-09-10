@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jubrail Halgord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
+    :root{
+      --light-bg: #ffffff;
+      --light-text: #333;
+      --muted: #555;
+      --accent: #3498db;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #333;
+      background: var(--light-bg);
+      color: var(--light-text);
+      transition: all 0.4s ease;
     }
 
     /* Navbar */
@@ -19,18 +27,11 @@
       align-items: center;
       justify-content: space-between;
       padding: 1rem 2rem;
-      background-color: #ffffff;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      flex-wrap: wrap;
-        position: sticky;
+      position: sticky;
       top: 0;
       z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      background: rgba(255, 255, 255, 0.6); /* semi-transparent */
-      backdrop-filter: blur(10px); /* frosted effect */
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(10px);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
     }
@@ -42,17 +43,19 @@
       opacity: 0;
       transform: translateY(-20px);
       animation: fadeDown 1s forwards 0.2s;
-      flex-wrap: wrap;
     }
 
     .logo img {
       width: 50px;
       height: 50px;
+      margin-left: -10px;
+      transition: all 0.4s ease;
     }
 
     .logo span {
       font-weight: 700;
       font-size: 1.25rem;
+      transition: color 0.4s ease;
     }
 
     nav ul {
@@ -64,7 +67,6 @@
       opacity: 0;
       transform: translateY(-20px);
       animation: fadeDown 1s forwards 0.4s;
-      flex-wrap: wrap;
     }
 
     nav ul li a {
@@ -72,15 +74,29 @@
       color: #000000;
       font-weight: 600;
       font-size: 1rem;
-      transition: color 0.3s;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
     }
 
     nav ul li a:hover {
-      color: #000000; /* slightly grey */
-      transition: color 0.3s, text-shadow 0.3s ease;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2); /* subtle shadow on hover */
+      color: #000000;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
 
+    /* Dark Mode Toggle Button */
+    .toggle-btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      background: #333;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .toggle-btn:hover {
+      background: #555;
+    }
 
     /* Hero / Header */
     header {
@@ -92,20 +108,23 @@
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
+      transition: color 0.4s ease;
     }
 
     header p {
       font-size: 1.25rem;
       color: #444;
       font-weight: 400;
+      transition: color 0.4s ease;
     }
 
     /* Sections */
     section {
       text-align: center;
       padding: 4rem 1rem;
-      max-width: 800px;
+      max-width: 900px;
       margin: auto;
+      transition: color 0.4s ease;
     }
 
     section h2 {
@@ -113,6 +132,7 @@
       margin-bottom: 1rem;
       font-weight: 700;
       color: #222;
+      transition: color 0.4s ease;
     }
 
     section p {
@@ -121,14 +141,51 @@
       line-height: 1.7;
       max-width: 650px;
       margin: auto;
+      transition: color 0.4s ease;
     }
 
     .highlight {
-      color: #3498db;
+      color: var(--accent);
       font-weight: 600;
+      transition: color 0.4s ease;
     }
 
-    /* Footer */
+    /* Skills Section */
+    .skills-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .skill-card {
+      background: white;
+      padding: 30px 20px;
+      border-radius: 16px;
+      width: 150px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    }
+
+    .skill-card img {
+      width: 60px;
+      margin-bottom: 15px;
+    }
+
+    .skill-card h3 {
+      font-size: 1.2rem;
+      color: #444;
+      transition: color 0.4s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer (light mode) */
     footer {
       text-align: center;
       padding: 2rem 1rem;
@@ -136,6 +193,7 @@
       border-top: 2px solid #eee;
       font-size: 0.875rem;
       color: #555;
+      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     }
 
     footer .dhikr {
@@ -162,15 +220,22 @@
     /* Responsive Styles */
     @media (max-width: 768px) {
       nav {
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: row; 
+        justify-content: space-between;
       }
 
+      .rules-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+      }
+
+
       nav ul {
-        flex-direction: column;
-        width: 100%;
+        flex-direction: row; 
         gap: 1rem;
-        margin-top: 1rem;
+        margin-top: 0;
+        justify-content: center;
+        width: auto;
       }
 
       header h1 {
@@ -221,6 +286,65 @@
       height: auto;
     }
 
+    /* === Dark Mode Styles (footer included) === */
+    body.dark-mode {
+      background: linear-gradient(to bottom, #555, #000);
+      color: #f1f1f1;
+    }
+
+  .skill-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+
+    body.dark-mode nav {
+      background: rgba(30, 30, 30, 0.6);
+      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.04);
+    }
+
+    body.dark-mode .toggle-btn {
+      background: #f1f1f1;
+      color: #111;
+    }
+
+    body.dark-mode nav ul li a {
+      color: #f1f1f1;
+    }
+
+    body.dark-mode nav ul li a:hover {
+      color: #ddd;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+
+    body.dark-mode header h1,
+    body.dark-mode header p,
+    body.dark-mode section h2,
+    body.dark-mode section p,
+    body.dark-mode .logo span,
+    body.dark-mode .skill-card h3 {
+      color: #f1f1f1;
+    }
+
+    body.dark-mode .skill-card {
+      background: #161616;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
+    }
+
+    body.dark-mode .highlight {
+      color: #66ccff;
+    }
+
+    /* footer dark styles */
+    body.dark-mode footer {
+      background: linear-gradient(180deg, #0b0b0b 0%, #111111 100%);
+      color: #e6e6e6;
+      border-top-color: rgba(255,255,255,0.06);
+    }
+
+    body.dark-mode footer .dhikr {
+      color: #9fe2c7; /* pleasant green in dark mode */
+    }
   </style>
 </head>
 <body>
@@ -228,14 +352,18 @@
   <!-- Navigation -->
   <nav>
     <div class="logo">
-      <img src="onlyCalligraphy.jpg" alt="Logo">
+      <img id="logo" src="onlyCalligraphy.jpg" alt="Logo"/>
       <span>Jubrail Halgord</span>
     </div>
+
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+
+    <button class="toggle-btn" id="darkModeToggle">🌙</button>
   </nav>
 
   <!-- About Section -->
@@ -244,16 +372,61 @@
     <p>I am <span class="highlight">Jubrail Halgord</span>, a developer and <span class="highlight">student of knowledge</span> who strives to follow Islam upon the <span class="highlight">methodology of the Salaf</span>.</p>
   </section>
 
-  <!-- Projects Section -->
-  <section id="projects" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.2s;">
-    <h2>My Projects</h2>
-    <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
+<!-- Projects Section -->
+<section id="projects" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.2s;">
+  <h2>My Projects</h2>
+  <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
+
+  <div class="skills-container" style="margin-top: 2rem;">
+    <!-- Weather App Card -->
+    <a href="https://vortxify.github.io/Weather/" target="_blank" style="text-decoration:none;">
+      <div class="skill-card" style="width: 200px; transition: all 0.3s ease;">
+        <img src="https://cdn-icons-png.flaticon.com/512/1116/1116453.png" alt="Weather App Icon" style="width:70px; margin-bottom: 15px;"/>
+        <h3 style="font-size:1.5rem;">Simple Weather App</h3>
+        <p style="font-size:0.9rem; color:#555; margin-top:10px; transition: color 0.3s ease;">
+          A simple weather app i made with HTML and CSS with a bit of JavaScript, Using the Open Meteo API to get the weather data.
+        </p>
+      </div>
+    </a>
+  </div>
+</section>
+
+
+  <!-- Skills Section -->
+  <section id="skills" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.3s;">
+    <h2>My Skills</h2>
+    <div class="skills-container">
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+        <h3>HTML</h3>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+        <h3>CSS</h3>
+      </div>
+      <div class="skill-card">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+        <h3>JavaScript</h3>
+      </div>
+    </div>
   </section>
 
   <!-- Contact Section -->
   <section id="contact" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.4s;">
     <h2>Contact</h2>
     <p>You can reach me at: <a href="mailto:jubrai.halgord@gmail.com" class="highlight">jubrai.halgord@gmail.com</a></p>
+    <!-- Rules / Warnings -->
+  <div class="rules-card" style="margin-top:2rem; padding:20px; border-radius:16px; background:#ffe6e6; color:#a00; max-width:500px; margin-left:auto; margin-right:auto; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:all 0.3s ease;">
+  <h3 style="margin-bottom:1rem; font-size:1.3rem;">⚠️ Please Note</h3>
+  <ul style="list-style:disc; padding-left:1.2rem; text-align:left; line-height:1.6; font-size:1rem;">
+    <li>I do not compromise on religious values.</li>
+    <li>I do not use music or any haram materials in my projects.</li>
+    <li>I maintain ethical and Islamic principles in all collaborations.</li>
+  </ul>
+</div>
+
+  
+  
   </section>
 
   <!-- Footer -->
@@ -263,10 +436,13 @@
     <p>Following the methodology of the Salaf (Ahl al-Sunnah wal-Jamā‘ah)</p>
   </footer>
 
-  <!-- Smooth navbar scroll effect -->
   <script>
     const nav = document.querySelector('nav');
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+    const logo = document.getElementById('logo');
 
+    // Navbar shrink on scroll
     window.addEventListener('scroll', () => {
       if (window.scrollY > 50) {
         nav.style.padding = '0.5rem 2rem';
@@ -276,7 +452,18 @@
         nav.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
       }
     });
-  </script>
 
+    // Dark Mode Toggle
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      if (body.classList.contains('dark-mode')) {
+        logo.src = "onlyCalligraphyDark.jpg";
+        toggleBtn.textContent = "☀️";
+      } else {
+        logo.src = "onlyCalligraphy.jpg";
+        toggleBtn.textContent = "🌙";
+      }
+    });
+  </script>
 </body>
 </html>
