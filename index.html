@@ -21,7 +21,7 @@
       padding: 1rem 2rem;
       background-color: #ffffff;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      flex-wrap: wrap; /* allow wrapping on small screens */
+      flex-wrap: wrap;
     }
 
     .logo {
@@ -31,6 +31,7 @@
       opacity: 0;
       transform: translateY(-20px);
       animation: fadeDown 1s forwards 0.2s;
+      flex-wrap: wrap;
     }
 
     .logo img {
@@ -41,6 +42,16 @@
     .logo span {
       font-weight: 700;
       font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem; /* space between name and Tasmiyyah */
+      flex-wrap: wrap;
+    }
+
+    .logo .tasmiyyah {
+      font-weight: 500;
+      font-size: 1rem;
+      color: #0066cc; /* light blue for emphasis */
     }
 
     nav ul {
@@ -177,6 +188,10 @@
       .logo span {
         font-size: 1rem;
       }
+
+      .logo .tasmiyyah {
+        font-size: 0.9rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -214,13 +229,15 @@
   <nav>
     <div class="logo">
       <img src="onlyCalligraphy.jpg" alt="Logo">
-      <span>Jubrail Halgord</span>
+      <span>
+        Jubrail Halgord
+        <span class="tasmiyyah">بسم الله الرحمن الرحيم</span>
+      </span>
     </div>
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
-      <li><a href="#">بسم الله</a></li>
     </ul>
   </nav>
 
