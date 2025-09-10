@@ -22,6 +22,10 @@
       background-color: #ffffff;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
       flex-wrap: wrap;
+      position: sticky; /* sticky navbar */
+      top: 0;
+      z-index: 1000;
+      transition: all 0.3s ease;
     }
 
     .logo {
@@ -248,6 +252,21 @@
     <p>“And hold firmly to the rope of Allah all together and do not become divided.” (Qur’an 3:103)</p>
     <p>Following the methodology of the Salaf (Ahl al-Sunnah wal-Jamā‘ah)</p>
   </footer>
+
+  <!-- Smooth navbar scroll effect -->
+  <script>
+    const nav = document.querySelector('nav');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.style.padding = '0.5rem 2rem';
+        nav.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+      } else {
+        nav.style.padding = '1rem 2rem';
+        nav.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+      }
+    });
+  </script>
 
 </body>
 </html>
