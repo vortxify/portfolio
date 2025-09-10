@@ -1,469 +1,407 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Jubrail Halgord</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-  <style>
-    :root{
-      --light-bg: #ffffff;
-      --light-text: #333;
-      --muted: #555;
-      --accent: #3498db;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Jubrail Halgord</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --light-bg: #ffffff;
+  --light-text: #333;
+  --muted: #555;
+  --accent: #3498db;
+}
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--light-bg);
-      color: var(--light-text);
-      transition: all 0.4s ease;
-    }
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--light-bg);
+  color: var(--light-text);
+  transition: all 0.4s ease;
+}
 
-    /* Navbar */
-    nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 1rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.6);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
+/* Navbar */
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeDown 1s forwards 0.2s;
-    }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeDown 1s forwards 0.2s;
+}
 
-    .logo img {
-      width: 50px;
-      height: 50px;
-      margin-left: -10px;
-      transition: all 0.4s ease;
-    }
+.logo img {
+  width: 50px;
+  height: 50px;
+  transition: all 0.4s ease;
+  flex-shrink: 0;
+}
 
-    .logo span {
-      font-weight: 700;
-      font-size: 1.25rem;
-      transition: color 0.4s ease;
-    }
+.logo span {
+  font-weight: 700;
+  font-size: 1.25rem;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      opacity: 0;
-      transform: translateY(-20px);
-      animation: fadeDown 1s forwards 0.4s;
-    }
+.logo span.hidden {
+  opacity: 0;
+  transform: translateX(-20px);
+  pointer-events: none;
+}
 
-    nav ul li a {
-      text-decoration: none;
-      color: #000000;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
+nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeDown 1s forwards 0.4s;
+}
 
-    nav ul li a:hover {
-      color: #000000;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-    }
+nav ul li a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-    /* Dark Mode Toggle Button */
-    .toggle-btn {
-      padding: 6px 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      background: #333;
-      color: white;
-      transition: all 0.3s ease;
-    }
+nav ul li a:hover {
+  color: #000000;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
 
-    .toggle-btn:hover {
-      background: #555;
-    }
+/* Hero / Header */
+header {
+  text-align: center;
+  padding: 5rem 1rem;
+}
 
-    /* Hero / Header */
-    header {
-      text-align: center;
-      padding: 5rem 1rem;
-    }
+header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  transition: color 0.4s ease;
+}
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-      transition: color 0.4s ease;
-    }
+header p {
+  font-size: 1.25rem;
+  color: #444;
+  font-weight: 400;
+  transition: color 0.4s ease;
+}
 
-    header p {
-      font-size: 1.25rem;
-      color: #444;
-      font-weight: 400;
-      transition: color 0.4s ease;
-    }
+/* Sections */
+section {
+  text-align: center;
+  padding: 4rem 1rem;
+  max-width: 900px;
+  margin: auto;
+  transition: color 0.4s ease;
+}
 
-    /* Sections */
-    section {
-      text-align: center;
-      padding: 4rem 1rem;
-      max-width: 900px;
-      margin: auto;
-      transition: color 0.4s ease;
-    }
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #222;
+  transition: color 0.4s ease;
+}
 
-    section h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      font-weight: 700;
-      color: #222;
-      transition: color 0.4s ease;
-    }
+section p {
+  font-size: 1.1rem;
+  color: #555;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: auto;
+  transition: color 0.4s ease;
+}
 
-    section p {
-      font-size: 1.1rem;
-      color: #555;
-      line-height: 1.7;
-      max-width: 650px;
-      margin: auto;
-      transition: color 0.4s ease;
-    }
+.highlight {
+  color: var(--accent);
+  font-weight: 600;
+  transition: color 0.4s ease;
+}
 
-    .highlight {
-      color: var(--accent);
-      font-weight: 600;
-      transition: color 0.4s ease;
-    }
+/* Projects Section */
+.project-card {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 250px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  margin: 1rem auto;
+  text-align: left;
+}
 
-    /* Skills Section */
-    .skills-container {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-      margin-top: 2rem;
-    }
+.project-card img {
+  width: 50px;
+  display: block;
+  margin: 0 auto 15px auto;
+}
 
-    .skill-card {
-      background: white;
-      padding: 30px 20px;
-      border-radius: 16px;
-      width: 150px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    }
+.project-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
 
-    .skill-card img {
-      width: 60px;
-      margin-bottom: 15px;
-    }
+.project-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
 
-    .skill-card h3 {
-      font-size: 1.2rem;
-      color: #444;
-      transition: color 0.4s ease;
-    }
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+}
 
-    .skill-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-    }
+/* Skills Section */
+.skills-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
 
-    /* Footer (light mode) */
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      background-color: #f9f9f9;
-      border-top: 2px solid #eee;
-      font-size: 0.875rem;
-      color: #555;
-      transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease;
-    }
+.skill-card {
+  background: white;
+  padding: 30px 20px;
+  border-radius: 16px;
+  width: 150px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
 
-    footer .dhikr {
-      font-style: italic;
-      color: #006400;
-      font-weight: 500;
-    }
+.skill-card img {
+  width: 60px;
+  margin-bottom: 15px;
+}
 
-    /* Animations */
-    @keyframes fadeDown {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+.skill-card h3 {
+  font-size: 1.2rem;
+  color: #444;
+}
 
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: row; 
-        justify-content: space-between;
-      }
-
-      .rules-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-      }
-
-
-      nav ul {
-        flex-direction: row; 
-        gap: 1rem;
-        margin-top: 0;
-        justify-content: center;
-        width: auto;
-      }
-
-      header h1 {
-        font-size: 2rem;
-      }
-
-      header p {
-        font-size: 1rem;
-      }
-
-      section h2 {
-        font-size: 1.5rem;
-      }
-
-      section p {
-        font-size: 1rem;
-      }
-
-      .logo span {
-        font-size: 1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      header h1 {
-        font-size: 1.75rem;
-      }
-
-      header p {
-        font-size: 0.95rem;
-      }
-
-      section h2 {
-        font-size: 1.25rem;
-      }
-
-      section p {
-        font-size: 0.9rem;
-      }
-
-      nav ul li a {
-        font-size: 0.95rem;
-      }
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    /* === Dark Mode Styles (footer included) === */
-    body.dark-mode {
-      background: linear-gradient(to bottom, #555, #000);
-      color: #f1f1f1;
-    }
-
-  .skill-card:hover {
+.skill-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  }
+}
 
+/* Contact Section */
+.contact-rules {
+  text-align: left;
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
 
-    body.dark-mode nav {
-      background: rgba(30, 30, 30, 0.6);
-      box-shadow: 0 2px 6px rgba(255, 255, 255, 0.04);
-    }
+.contact-rules li {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
 
-    body.dark-mode .toggle-btn {
-      background: #f1f1f1;
-      color: #111;
-    }
+/* Warning Card */
+.warning-card {
+  background-color: #ffdddd;
+  border-left: 6px solid #ff4c4c;
+  border-radius: 10px;
+  padding: 1rem 1.5rem;
+  max-width: 600px;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
 
-    body.dark-mode nav ul li a {
-      color: #f1f1f1;
-    }
+.warning-card ul {
+  text-align: left;
+  margin: 0;
+  padding-left: 1.2rem;
+}
 
-    body.dark-mode nav ul li a:hover {
-      color: #ddd;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-    }
+.warning-card li {
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  color: #900000;
+  font-weight: 500;
+}
 
-    body.dark-mode header h1,
-    body.dark-mode header p,
-    body.dark-mode section h2,
-    body.dark-mode section p,
-    body.dark-mode .logo span,
-    body.dark-mode .skill-card h3 {
-      color: #f1f1f1;
-    }
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #f9f9f9;
+  border-top: 2px solid #eee;
+  font-size: 0.875rem;
+  color: #555;
+}
 
-    body.dark-mode .skill-card {
-      background: #161616;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.6);
-    }
+footer .dhikr {
+  font-style: italic;
+  color: #006400;
+  font-weight: 500;
+}
 
-    body.dark-mode .highlight {
-      color: #66ccff;
-    }
+/* Animations */
+@keyframes fadeDown {
+  to { opacity:1; transform: translateY(0);}
+}
+@keyframes fadeUp {
+  to { opacity:1; transform: translateY(0);}
+}
 
-    /* footer dark styles */
-    body.dark-mode footer {
-      background: linear-gradient(180deg, #0b0b0b 0%, #111111 100%);
-      color: #e6e6e6;
-      border-top-color: rgba(255,255,255,0.06);
-    }
+/* Responsive */
+@media (max-width: 768px) {
+  nav { flex-direction: row; justify-content: space-between; }
+  nav ul { flex-direction: row; gap:1rem; margin-top:0; justify-content:center; width:auto;}
+  header h1 { font-size:2rem; }
+  header p { font-size:1rem; }
+  section h2 { font-size:1.5rem; }
+  section p { font-size:1rem; }
+  .logo span { font-size:1rem;}
+}
 
-    body.dark-mode footer .dhikr {
-      color: #9fe2c7; /* pleasant green in dark mode */
-    }
-  </style>
+@media (max-width: 480px) {
+  header h1 { font-size:1.75rem; }
+  header p { font-size:0.95rem; }
+  section h2 { font-size:1.25rem; }
+  section p { font-size:0.9rem; }
+  nav ul li a { font-size:0.95rem; }
+}
+
+img { max-width: 100%; height:auto; }
+</style>
 </head>
 <body>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">
-      <img id="logo" src="onlyCalligraphy.jpg" alt="Logo"/>
-      <span>Jubrail Halgord</span>
-    </div>
+<!-- Navigation -->
+<nav>
+  <div class="logo">
+    <img id="logo" src="onlyCalligraphy.jpg" alt="Logo"/>
+    <span>Jubrail Halgord</span>
+  </div>
 
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
-    <button class="toggle-btn" id="darkModeToggle">🌙</button>
-  </nav>
-
-  <!-- About Section -->
-  <section id="about" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1s;">
-    <h2>About Me</h2>
-    <p>I am <span class="highlight">Jubrail Halgord</span>, a developer and <span class="highlight">student of knowledge</span> who strives to follow Islam upon the <span class="highlight">methodology of the Salaf</span>.</p>
-  </section>
+<!-- About Section -->
+<section id="about" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1s;">
+  <h2>About Me</h2>
+  <p>I am <span class="highlight">Jubrail Halgord</span>, a developer and <span class="highlight">student of knowledge</span> who strives to follow Islam upon the <span class="highlight">methodology of the Salaf</span>.</p>
+</section>
 
 <!-- Projects Section -->
 <section id="projects" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.2s;">
   <h2>My Projects</h2>
   <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
 
-  <div class="skills-container" style="margin-top: 2rem;">
-    <!-- Weather App Card -->
-    <a href="https://vortxify.github.io/Weather/" target="_blank" style="text-decoration:none;">
-      <div class="skill-card" style="width: 200px; transition: all 0.3s ease;">
-        <img src="https://cdn-icons-png.flaticon.com/512/1116/1116453.png" alt="Weather App Icon" style="width:70px; margin-bottom: 15px;"/>
-        <h3 style="font-size:1.5rem;">Simple Weather App</h3>
-        <p style="font-size:0.9rem; color:#555; margin-top:10px; transition: color 0.3s ease;">
-          A simple weather app i made with HTML and CSS with a bit of JavaScript, Using the Open Meteo API to get the weather data.
-        </p>
-      </div>
-    </a>
+  <a href="https://vortxify.github.io/Weather/" style="text-decoration:none; color:inherit;">
+    <div class="project-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather App"/>
+      <h3>Simple Weather App</h3>
+      <p>I used HTML, CSS, and JavaScript for this project. I used the Meteo API to fetch weather data based on the user's location. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+  </a>
+</section>
+
+<!-- Skills Section -->
+<section id="skills" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.3s;">
+  <h2>My Skills</h2>
+  <div class="skills-container">
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+      <h3>HTML</h3>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+      <h3>CSS</h3>
+    </div>
+    <div class="skill-card">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+      <h3>JavaScript</h3>
+    </div>
   </div>
 </section>
 
+<!-- Contact Section -->
+<section id="contact" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.4s;">
+  <h2>Contact</h2>
+  <p>You can reach me at: <a href="mailto:jubrai.halgord@gmail.com" class="highlight">jubrai.halgord@gmail.com</a></p>
 
-  <!-- Skills Section -->
-  <section id="skills" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.3s;">
-    <h2>My Skills</h2>
-    <div class="skills-container">
-      <div class="skill-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-        <h3>HTML</h3>
-      </div>
-      <div class="skill-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-        <h3>CSS</h3>
-      </div>
-      <div class="skill-card">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-        <h3>JavaScript</h3>
-      </div>
-    </div>
-  </section>
+  <div class="warning-card">
+    <ul class="contact-rules">
+      <li>⚠️ I do not compromise religious values.</li>
+      <li>⚠️ I do not use music or work with haram materials.</li>
+      <li>⚠️ I maintain professionalism and ethical boundaries in all projects.</li>
+    </ul>
+  </div>
+</section>
 
-  <!-- Contact Section -->
-  <section id="contact" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.4s;">
-    <h2>Contact</h2>
-    <p>You can reach me at: <a href="mailto:jubrai.halgord@gmail.com" class="highlight">jubrai.halgord@gmail.com</a></p>
-    <!-- Rules / Warnings -->
-  <div class="rules-card" style="margin-top:2rem; padding:20px; border-radius:16px; background:#ffe6e6; color:#a00; max-width:500px; margin-left:auto; margin-right:auto; box-shadow:0 4px 8px rgba(0,0,0,0.1); transition:all 0.3s ease;">
-  <h3 style="margin-bottom:1rem; font-size:1.3rem;">⚠️ Please Note</h3>
-  <ul style="list-style:disc; padding-left:1.2rem; text-align:left; line-height:1.6; font-size:1rem;">
-    <li>I do not compromise on religious values.</li>
-    <li>I do not use music or any haram materials in my projects.</li>
-    <li>I maintain ethical and Islamic principles in all collaborations.</li>
-  </ul>
-</div>
+<!-- Footer -->
+<footer>
+  <p class="dhikr">سبحان الله وبحمده، سبحان الله العظيم</p>
+  <p>“And hold firmly to the rope of Allah all together and do not become divided.” (Qur’an 3:103)</p>
+  <p>Following the methodology of the Salaf (Ahl al-Sunnah wal-Jamā‘ah)</p>
+</footer>
 
-  
-  
-  </section>
+<script>
+const nav = document.querySelector('nav');
+const logoName = document.querySelector('.logo span');
 
-  <!-- Footer -->
-  <footer>
-    <p class="dhikr">سبحان الله وبحمده، سبحان الله العظيم</p>
-    <p>“And hold firmly to the rope of Allah all together and do not become divided.” (Qur’an 3:103)</p>
-    <p>Following the methodology of the Salaf (Ahl al-Sunnah wal-Jamā‘ah)</p>
-  </footer>
+// Navbar shrink on scroll
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    nav.style.padding = '0.5rem 2rem';
+    nav.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+  } else {
+    nav.style.padding = '1rem 2rem';
+    nav.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
+  }
+});
 
-  <script>
-    const nav = document.querySelector('nav');
-    const toggleBtn = document.getElementById('darkModeToggle');
-    const body = document.body;
-    const logo = document.getElementById('logo');
+// Hide name if too small or touching nav
+function checkLogoName() {
+  const navWidth = nav.offsetWidth;
+  const logoWidth = document.querySelector('.logo img').offsetWidth;
+  const nameWidth = logoName.offsetWidth;
 
-    // Navbar shrink on scroll
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        nav.style.padding = '0.5rem 2rem';
-        nav.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
-      } else {
-        nav.style.padding = '1rem 2rem';
-        nav.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
-      }
-    });
+  const totalNeeded = logoWidth + nameWidth + 200; // approximate nav items width
 
-    // Dark Mode Toggle
-    toggleBtn.addEventListener('click', () => {
-      body.classList.toggle('dark-mode');
-      if (body.classList.contains('dark-mode')) {
-        logo.src = "onlyCalligraphyDark.jpg";
-        toggleBtn.textContent = "☀️";
-      } else {
-        logo.src = "onlyCalligraphy.jpg";
-        toggleBtn.textContent = "🌙";
-      }
-    });
-  </script>
+  if (window.innerWidth < 500 || totalNeeded > window.innerWidth) {
+    logoName.classList.add('hidden');
+  } else {
+    logoName.classList.remove('hidden');
+  }
+}
+
+window.addEventListener('resize', checkLogoName);
+window.addEventListener('load', checkLogoName);
+</script>
+
 </body>
 </html>
