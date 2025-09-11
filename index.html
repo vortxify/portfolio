@@ -3,22 +3,26 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Jubrail Halgord</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
+<title>Jubrail Halgord | Portfolio</title>
+<meta name="description" content="Portfolio of Jubrail Halgord, a frontend developer and student of knowledge following the methodology of the Salaf. Showcasing projects, skills, and contact information."/>
+<link rel="icon" href="onlyCalligraphy.jpg" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
 <style>
 :root{
   --light-bg: #ffffff;
   --light-text: #333;
   --muted: #555;
   --accent: #3498db;
+  --accent-dark: #217dbb;
 }
 
+/* Global */
 body {
   margin: 0;
   font-family: 'Inter', sans-serif;
   background: var(--light-bg);
   color: var(--light-text);
-  transition: all 0.4s ease;
+  scroll-behavior: smooth;
 }
 
 /* Navbar */
@@ -40,28 +44,16 @@ nav {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  opacity: 0;
-  transform: translateY(-20px);
-  animation: fadeDown 1s forwards 0.2s;
 }
 
 .logo img {
   width: 50px;
   height: 50px;
-  transition: all 0.4s ease;
-  flex-shrink: 0;
 }
 
 .logo span {
   font-weight: 700;
   font-size: 1.25rem;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.logo span.hidden {
-  opacity: 0;
-  transform: translateX(-20px);
-  pointer-events: none;
 }
 
 nav ul {
@@ -70,42 +62,69 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  opacity: 0;
-  transform: translateY(-20px);
-  animation: fadeDown 1s forwards 0.4s;
+  flex-wrap: wrap;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #000000;
+  color: #333;
   font-weight: 600;
   font-size: 1rem;
-  transition: color 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
 }
 
-nav ul li a:hover {
-  color: #000000;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
 }
 
-/* Hero / Header */
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Hero */
 header {
   text-align: center;
-  padding: 5rem 1rem;
+  padding: 6rem 1rem 4rem;
 }
+
+.hero-text {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.8s forwards;
+}
+
+.hero-name { animation-delay: 0.2s; }
+.hero-tagline { animation-delay: 0.6s; }
+.hero-cta { 
+  animation-delay: 1s;
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.hero-cta:hover { background: var(--accent-dark); }
 
 header h1 {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 0.5rem;
-  font-weight: 600;
-  transition: color 0.4s ease;
+  font-weight: 700;
 }
 
-header p {
-  font-size: 1.25rem;
-  color: #444;
-  font-weight: 400;
-  transition: color 0.4s ease;
+header h1 .highlight {
+  color: var(--accent);
 }
 
 /* Sections */
@@ -114,7 +133,14 @@ section {
   padding: 4rem 1rem;
   max-width: 900px;
   margin: auto;
-  transition: color 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+section.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.8s ease;
 }
 
 section h2 {
@@ -122,7 +148,6 @@ section h2 {
   margin-bottom: 1rem;
   font-weight: 700;
   color: #222;
-  transition: color 0.4s ease;
 }
 
 section p {
@@ -131,51 +156,54 @@ section p {
   line-height: 1.7;
   max-width: 650px;
   margin: auto;
-  transition: color 0.4s ease;
 }
 
-.highlight {
-  color: var(--accent);
-  font-weight: 600;
-  transition: color 0.4s ease;
-}
-
-/* Projects Section */
+/* Project Cards */
 .project-card {
   background: white;
   padding: 20px;
   border-radius: 16px;
-  width: 250px;
+  max-width: 300px;
   transition: all 0.3s ease;
-  cursor: pointer;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-  margin: 1rem auto;
-  text-align: left;
-}
-
-.project-card img {
-  width: 50px;
-  display: block;
-  margin: 0 auto 15px auto;
-}
-
-.project-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
+  margin: 1.5rem auto;
   text-align: center;
 }
 
-.project-card p {
-  font-size: 0.95rem;
-  color: #555;
+.project-card img {
+  width: 70px;
+  margin-bottom: 15px;
 }
+
+.project-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+.project-card p { font-size: 0.95rem; color: #555; margin-bottom: 1rem; }
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
-/* Skills Section */
+.project-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.project-buttons a {
+  text-decoration: none;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.project-buttons a:hover { background: var(--accent-dark); }
+
+/* Skills */
 .skills-container {
   display: flex;
   justify-content: center;
@@ -190,39 +218,24 @@ section p {
   border-radius: 16px;
   width: 150px;
   transition: all 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   text-align: center;
 }
 
-.skill-card img {
-  width: 60px;
-  margin-bottom: 15px;
-}
+.skill-card img { width: 60px; margin-bottom: 15px; }
 
-.skill-card h3 {
-  font-size: 1.2rem;
-  color: #444;
-}
+.skill-card h3 { font-size: 1.2rem; color: #444; }
 
 .skill-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
-/* Contact Section */
-.contact-rules {
-  text-align: left;
-  max-width: 600px;
-  margin: 1.5rem auto;
-}
+/* Contact */
+.contact-rules { text-align: left; max-width: 600px; margin: 1.5rem auto; }
 
-.contact-rules li {
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-}
+.contact-rules li { margin-bottom: 0.75rem; font-size: 1rem; }
 
-/* Warning Card */
 .warning-card {
   background-color: #ffdddd;
   border-left: 6px solid #ff4c4c;
@@ -233,20 +246,8 @@ section p {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.warning-card ul {
-  text-align: left;
-  margin: 0;
-  padding-left: 1.2rem;
-}
+.warning-card li { color: #900000; font-weight: 500; }
 
-.warning-card li {
-  margin-bottom: 0.75rem;
-  font-size: 1rem;
-  color: #900000;
-  font-weight: 500;
-}
-
-/* Footer */
 footer {
   text-align: center;
   padding: 2rem 1rem;
@@ -256,102 +257,72 @@ footer {
   color: #555;
 }
 
-footer .dhikr {
-  font-style: italic;
-  color: #006400;
-  font-weight: 500;
-}
+footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
 
 /* Animations */
-@keyframes fadeDown {
-  to { opacity:1; transform: translateY(0);}
-}
-@keyframes fadeUp {
-  to { opacity:1; transform: translateY(0);}
-}
+@keyframes fadeUp { to { opacity:1; transform: translateY(0); } }
 
 /* Responsive */
-@media (max-width: 768px) {
-  nav { flex-direction: row; justify-content: space-between; }
-  nav ul { flex-direction: row; gap:1rem; margin-top:0; justify-content:center; width:auto;}
-  header h1 { font-size:2rem; }
-  header p { font-size:1rem; }
-  section h2 { font-size:1.5rem; }
-  section p { font-size:1rem; }
-  .logo span { font-size:1rem;}
-}
-
-@media (max-width: 480px) {
-  header h1 { font-size:1.75rem; }
-  header p { font-size:0.95rem; }
-  section h2 { font-size:1.25rem; }
-  section p { font-size:0.9rem; }
-  nav ul li a { font-size:0.95rem; }
-}
-
-img { max-width: 100%; height:auto; }
+@media (max-width: 768px) { header h1 { font-size:2.3rem; } section { padding: 3rem 1rem; } .project-card { max-width:90%; } }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
+<!-- Navbar -->
 <nav>
   <div class="logo">
-    <img id="logo" src="onlyCalligraphy.jpg" alt="Logo"/>
+    <img src="onlyCalligraphy.jpg" alt="Jubrail Logo"/>
     <span>Jubrail Halgord</span>
   </div>
-
   <ul>
-    <li><a href="#about">About</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
-<!-- About Section -->
-<section id="about" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1s;">
-  <h2>About Me</h2>
-  <p>I am <span class="highlight">Jubrail Halgord</span>, a developer and <span class="highlight">student of knowledge</span> who strives to follow Islam upon the <span class="highlight">methodology of the Salaf</span>.</p>
-</section>
+<!-- Hero -->
+<header>
+  <h1 class="hero-text hero-name">Hi, I’m <span class="highlight">Jubrail</span></h1>
+  <p class="hero-text hero-tagline">A Frontend Developer and Student of Knowledge following the methodology of the Salaf.</p>
+  <a href="#projects" class="hero-text hero-cta">View Projects</a>
+</header>
 
-<!-- Projects Section -->
-<section id="projects" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.2s;">
+<!-- Projects -->
+<section id="projects">
   <h2>My Projects</h2>
   <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
 
-  <a href="https://vortxify.github.io/Weather/" style="text-decoration:none; color:inherit;">
-    <div class="project-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather App"/>
-      <h3>Simple Weather App</h3>
-      <p>I used HTML, CSS, and JavaScript for this project. I used the Meteo API to fetch weather data based on the user's location.</p>
-    </div>
-  </a>
-</section>
-
-<!-- Skills Section -->
-<section id="skills" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.3s;">
-  <h2>My Skills</h2>
-  <div class="skills-container">
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-      <h3>HTML</h3>
-    </div>
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-      <h3>CSS</h3>
-    </div>
-    <div class="skill-card">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-      <h3>JavaScript</h3>
+  <div class="project-card">
+    <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather App"/>
+    <h3>Weather App</h3>
+    <p>Built using HTML, CSS, and JavaScript. Fetches live weather data with Meteo API.</p>
+    <div class="project-buttons">
+      <a href="https://vortxify.github.io/Weather/" target="_blank">Live Demo</a>
+      <a href="https://github.com/vortxify/Weather" target="_blank">Source Code</a>
     </div>
   </div>
 </section>
 
-<!-- Contact Section -->
-<section id="contact" style="opacity:0; transform:translateY(20px); animation:fadeUp 1s forwards 1.4s;">
+<!-- Skills -->
+<section id="skills">
+  <h2>My Skills</h2>
+  <div class="skills-container">
+    <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML"/><h3>HTML</h3></div>
+    <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS"/><h3>CSS</h3></div>
+    <div class="skill-card"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/><h3>JavaScript</h3></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
   <h2>Contact</h2>
   <p>You can reach me at: <a href="mailto:jubrai.halgord@gmail.com" class="highlight">jubrai.halgord@gmail.com</a></p>
+
+  <div class="project-buttons" style="margin:1rem auto;">
+    <a href="https://github.com/vortxify" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/" target="_blank">LinkedIn</a>
+  </div>
 
   <div class="warning-card">
     <ul class="contact-rules">
@@ -367,41 +338,28 @@ img { max-width: 100%; height:auto; }
   <p class="dhikr">سبحان الله وبحمده، سبحان الله العظيم</p>
   <p>“And hold firmly to the rope of Allah all together and do not become divided.” (Qur’an 3:103)</p>
   <p>Following the methodology of the Salaf (Ahl al-Sunnah wal-Jamā‘ah)</p>
+  <p>&copy; 2025 Jubrail Halgord, All rights reserved.</p>
 </footer>
 
 <script>
-const nav = document.querySelector('nav');
-const logoName = document.querySelector('.logo span');
-
 // Navbar shrink on scroll
+const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    nav.style.padding = '0.5rem 2rem';
-    nav.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
-  } else {
-    nav.style.padding = '1rem 2rem';
-    nav.style.boxShadow = '0 2px 6px rgba(0,0,0,0.1)';
-  }
+  if(window.scrollY > 50) nav.style.padding = '0.5rem 2rem';
+  else nav.style.padding = '1rem 2rem';
 });
 
-// Hide name if too small or touching nav
-function checkLogoName() {
-  const navWidth = nav.offsetWidth;
-  const logoWidth = document.querySelector('.logo img').offsetWidth;
-  const nameWidth = logoName.offsetWidth;
-
-  const totalNeeded = logoWidth + nameWidth + 200; // approximate nav items width
-
-  if (window.innerWidth < 500 || totalNeeded > window.innerWidth) {
-    logoName.classList.add('hidden');
-  } else {
-    logoName.classList.remove('hidden');
-  }
-}
-
-window.addEventListener('resize', checkLogoName);
-window.addEventListener('load', checkLogoName);
+// Reveal sections on scroll
+const sections = document.querySelectorAll('section');
+const revealOnScroll = () => {
+  const triggerBottom = window.innerHeight / 1.2;
+  sections.forEach(sec => {
+    const secTop = sec.getBoundingClientRect().top;
+    if(secTop < triggerBottom) sec.classList.add('reveal');
+  });
+};
+window.addEventListener('scroll', revealOnScroll);
+window.addEventListener('load', revealOnScroll);
 </script>
-
 </body>
 </html>
