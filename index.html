@@ -248,6 +248,14 @@ section p {
 
 .warning-card li { color: #900000; font-weight: 500; }
 
+.projects-container {
+  display: flex;
+  justify-content: center; /* centers them horizontally */
+  gap: 2rem; /* space between cards */
+  flex-wrap: wrap; /* allows stacking on small screens */
+}
+
+
 footer {
   text-align: center;
   padding: 2rem 1rem;
@@ -289,17 +297,30 @@ footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
 </header>
 
 <!-- Projects -->
+  
 <section id="projects">
-  <h2>My Projects</h2>
-  <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
+  <div class="projects-container">
+    <h2>My Projects</h2>
+    <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
 
-  <div class="project-card">
-    <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather App"/>
-    <h3>Weather App</h3>
-    <p>Built using HTML, CSS, and JavaScript. Fetches live weather data with Meteo API.</p>
-    <div class="project-buttons">
-      <a href="https://vortxify.github.io/Weather/" target="_blank">Live Demo</a>
-      <a href="https://github.com/vortxify/Weather" target="_blank">Source Code</a>
+    <div class="project-card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather App"/>
+      <h3>Weather App</h3>
+      <p>Built using HTML, CSS, and JavaScript, Fetches live weather data with Meteo API.</p>
+      <div class="project-buttons">
+        <a href="https://vortxify.github.io/Weather/" target="_blank">Live Demo</a>
+       <a href="https://github.com/vortxify/Weather" target="_blank">Source Code</a>
+     </div>
+    </div>
+
+    <div class="project-card">
+      <img src="shopping-bag.png" alt="Demo Store"/>
+      <h3>Demo Store</h3>
+      <p>Built using HTML, CSS, and JavaScript, It has a Smooth Intro and Essential Shopping Mechanics.</p>
+      <div class="project-buttons">
+       <a href="https://vortxify.github.io/demo-shop/" target="_blank">Live Demo</a>
+       <a href="https://github.com/vortxify/demo-shop" target="_blank">Source Code</a>
+     </div>
     </div>
   </div>
 </section>
