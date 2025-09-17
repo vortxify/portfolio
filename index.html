@@ -200,7 +200,7 @@ section p {
   transition: all 0.3s;
 }
 
-.project-buttons a:hover { background: var(--accent-dark); }
+.project-buttons a:hover { background: var(--accent-dark); box-shadow: 0 0 8px;}
 
 /* Skills */
 .skills-container {
@@ -261,7 +261,10 @@ section p {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.5s linear;
+}
+.myprojects-highlight {
+  text-decoration-color: #eee;
 }
 .project-card:hover p {
   max-height: 500px; /* enough to show content */
@@ -324,7 +327,7 @@ footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
 <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 <section id="projects">
   <div class="projects-container">
-      <h2>My Projects</h2>
+      <h2><span class="myprojects-highlight">My Projects</span></h2>
       <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
     <div class="project-card">
       <img src='temperature-high.png' alt="Weather App"/>
@@ -341,8 +344,8 @@ footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
       <h3>Quantum Visualization</h3>
       <p> A 3D interactive quantum wavefunction visualization built with Three.js, Users can adjust energy levels, well width, amplitude, and speed, while the ribbon representing the wave dynamically animates accordingly,creating a visually engaging interface that combines physics simulation with interactive controls.</p>
       <div class="project-buttons">
-        <a href="https://vortxify.github.io/Weather/" target="_blank">Live Demo</a>
-       <a href="https://github.com/vortxify/Weather" target="_blank">Source Code</a>
+        <a href="https://vortxify.github.io/quantum/" target="_blank">Live Demo</a>
+       <a href="https://github.com/vortxify/quantum/" target="_blank">Source Code</a>
      </div>
     </div>
 
