@@ -131,7 +131,6 @@ header h1 .highlight {
 section {
   text-align: center;
   padding: 4rem 1rem;
-  max-width: 900px;
   margin: auto;
   opacity: 0;
   transform: translateY(20px);
@@ -163,7 +162,7 @@ section p {
   background: white;
   padding: 20px;
   border-radius: 16px;
-  max-width: 300px;
+  max-width: 200px;
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0,0,0,0.05);
   margin: 1.5rem auto;
@@ -177,7 +176,7 @@ section p {
 
 .project-card h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 
-.project-card p { font-size: 0.95rem; color: #555; margin-bottom: 1rem; }
+.project-card p { font-size: 0.95rem; color: #555; margin-bottom: 1rem; transition: all 0.5s ease;}
 
 .project-card:hover {
   transform: translateY(-10px);
@@ -249,12 +248,32 @@ section p {
 .warning-card li { color: #900000; font-weight: 500; }
 
 .projects-container {
+  max-width: 900px;             /* content stays centered */
+  margin: 0 auto;               /* horizontal centering */
+  padding: 0 1rem;              /* optional small side padding */
   display: flex;
-  justify-content: center; /* centers them horizontally */
-  gap: 2rem; /* space between cards */
-  flex-wrap: wrap; /* allows stacking on small screens */
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  align-items: flex-start;
 }
-
+.project-card p {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.project-card:hover p {
+  max-height: 500px; /* enough to show content */
+  opacity: 1;
+}
+#projects {
+  width: 100%;                  /* full width */
+  background-color: rgba(0, 255, 255, 0.2); /* light cyan */
+  padding: 4rem 0;              /* top & bottom padding */
+  display: block;               /* remove flex to prevent shrinking */
+  text-align: center;
+}
 
 footer {
   text-align: center;
@@ -264,6 +283,11 @@ footer {
   font-size: 0.875rem;
   color: #555;
 }
+
+section, .project-card, .skill-card {
+  transition: transform 0.8s ease-in; /* smooth movement */
+}
+
 
 footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
 
@@ -292,21 +316,20 @@ footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
 <!-- Hero -->
 <header>
   <h1 class="hero-text hero-name">Hi, I’m <span class="highlight">Jubrail</span></h1>
-  <p class="hero-text hero-tagline">A Frontend Developer and Student of Knowledge following the methodology of the Salaf.</p>
+  <p class="hero-text hero-tagline">Im a Frontend Developer and Learning Backend, I am 17 years old and im situated in Erbil, Kurdish Region within Iraq.</p>
   <a href="#projects" class="hero-text hero-cta">View Projects</a>
 </header>
 
 <!-- Projects -->
-  
+<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 <section id="projects">
   <div class="projects-container">
-    <h2>My Projects</h2>
-    <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
-
+      <h2>My Projects</h2>
+      <p>Here are some of the works I have built in <span class="highlight">coding</span> and <span class="highlight">design</span>.</p>
     <div class="project-card">
-      <img src="https://cdn-icons-png.flaticon.com/512/1163/1163661.png" alt="Weather App"/>
+      <img src='temperature-high.png' alt="Weather App"/>
       <h3>Weather App</h3>
-      <p>Built using HTML, CSS, and JavaScript, Fetches live weather data with Meteo API.</p>
+      <p>Built using HTML, CSS and Javascript, It fetches the real data from the location of the user from the Meteo API, Providing the Latitude & Longtitude alongside Temperature and Windspeeds.</p>
       <div class="project-buttons">
         <a href="https://vortxify.github.io/Weather/" target="_blank">Live Demo</a>
        <a href="https://github.com/vortxify/Weather" target="_blank">Source Code</a>
@@ -314,9 +337,19 @@ footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
     </div>
 
     <div class="project-card">
-      <img src="shopping-bag.png" alt="Demo Store"/>
+      <img src="physics.png" alt="Quantum visualization"/>
+      <h3>Quantum Visualization</h3>
+      <p> A 3D interactive quantum wavefunction visualization built with Three.js, Users can adjust energy levels, well width, amplitude, and speed, while the ribbon representing the wave dynamically animates accordingly,creating a visually engaging interface that combines physics simulation with interactive controls.</p>
+      <div class="project-buttons">
+        <a href="https://vortxify.github.io/Weather/" target="_blank">Live Demo</a>
+       <a href="https://github.com/vortxify/Weather" target="_blank">Source Code</a>
+     </div>
+    </div>
+
+    <div class="project-card">
+      <img src="shopping-cart.png" alt="Demo Store"/>
       <h3>Demo Store</h3>
-      <p>Built using HTML, CSS, and JavaScript, It has a Smooth Intro and Essential Shopping Mechanics.</p>
+      <p>Interactive demo store website built using HTML, CSS & Javascript, Its the most basic store while serving the purpose and being functional.</p>
       <div class="project-buttons">
        <a href="https://vortxify.github.io/demo-store/" target="_blank">Live Demo</a>
        <a href="https://github.com/vortxify/demo-store" target="_blank">Source Code</a>
@@ -364,6 +397,30 @@ footer .dhikr { font-style: italic; color: #006400; font-weight: 500; }
 </footer>
 
 <script>
+  // Wobble effect on scroll
+  const wobbleElements = document.querySelectorAll('section, .project-card, .skill-card');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  
+  wobbleElements.forEach(el => {
+    // Move element slightly based on scroll
+    const offset = scrollY * 0.02; // adjust multiplier for intensity
+    el.style.transform = `translateY(${offset}px)`;
+  });
+});
+
+// Optional: reset to 0 when scroll stops (using a debounce)
+let isScrolling;
+window.addEventListener('scroll', () => {
+  window.clearTimeout(isScrolling);
+  isScrolling = setTimeout(() => {
+    wobbleElements.forEach(el => {
+      el.style.transform = `translateY(0px)`;
+    });
+  }, 100); // 100ms after scroll stops
+});
+
 // Navbar shrink on scroll
 const nav = document.querySelector('nav');
 window.addEventListener('scroll', () => {
